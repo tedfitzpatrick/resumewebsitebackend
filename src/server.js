@@ -45,7 +45,7 @@ app.get('/api/experiences', async (req, res) => {
   try {
   const mongoclient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
   const db = mongoclient.db('resumewebsitedb');
-  const experiences = await db.collection('experiences').findOne({});
+  const experiences = await db.collection('experiences').find({}).toArray();
   res.status(200).json(experiences);
   mongoclient.close();
   } catch (error) {
