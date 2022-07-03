@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 let client;
 
-const initDBconnection = async () => {
+export const initDBconnection = async () => {
   client = await MongoClient.connect(
     "mongodb://localhost:27017",
     { 
@@ -13,7 +13,7 @@ const initDBconnection = async () => {
 //   console.log("DB connected");
 }
 
-const getDBconnection = (dbName) => {
+export const getDBconnection = (dbName) => {
   const db = client.db(dbName);
   return db;
 }

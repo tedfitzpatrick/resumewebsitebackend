@@ -1,10 +1,16 @@
 import express from 'express';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser'; // old, express now bundles parsers
+
 // import { MongoClient } from 'mongodb';
-import { initDBconnection, getDBconnection } from './db';
+import { initDBconnection } from './db';
 import routesAPI from './routes';
 
 const app = express();
+
+// "middleware" body parser must be registered to handle POST body
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
 
 // hello
 app.get('/hello', (req, res) => {
@@ -92,6 +98,12 @@ routesAPI.forEach(route => {
 
 // });
 
-app.listen(8000, () => {
-  console.log('Express app listening on port 8000!');
-});
+initDBconnection()
+  .then(() => {
+   
+    app.listen(8000, () => {
+      console.log('Express app listening on port 8000!');
+    });
+
+  });
+
