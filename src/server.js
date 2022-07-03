@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 // import { MongoClient } from 'mongodb';
 import { initDBconnection, getDBconnection } from './db';
-import { routesAPI } from './routes';
+import routesAPI from './routes';
 
 const app = express();
 
