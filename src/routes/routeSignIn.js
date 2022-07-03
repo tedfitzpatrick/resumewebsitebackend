@@ -8,11 +8,11 @@ const routeSignIn = {
     
         // console.log(request.body)
 
-        const { signinname, signinpassword } = request.body;
+        const { signInName, signInPassword } = request.body;
 
         const db = getDBconnection('resumewebsitedb');
     
-        const user = await db.collection('user').findOne({ name: signinname });
+        const user = await db.collection('user').findOne({ name: signInName });
 
         if (!user) {
             response.sendStatus(401);
@@ -21,9 +21,9 @@ const routeSignIn = {
 
         const { password } = user;
 
-        if (password === signinpassword) {
+        if (password === signInPassword) {
 
-            const token = jwt.sign({ name: signinname }, process.env.JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
+            const token = jwt.sign({ name: signInName }, process.env.JWT_SECRET, { expiresIn: '1h' }, (error, token) => {
                 if (error) {
                     response.status(500).json(error);
                 }
