@@ -5,6 +5,8 @@ import express from 'express';
 import { initDBconnection } from './db';
 import routesAPI from './routes';
 
+const PORT = process.env.PORT || 8080;
+
 const app = express();
 
 // "middleware" body parser must be registered to handle POST body
@@ -101,8 +103,8 @@ routesAPI.forEach(route => {
 initDBconnection()
   .then(() => {
    
-    app.listen(8000, () => {
-      console.log('Express app listening on port 8000!');
+    app.listen(PORT, () => {
+      console.log(`Express app listening on port ${PORT}`);
     });
 
   });
