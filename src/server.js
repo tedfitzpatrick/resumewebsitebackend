@@ -5,7 +5,11 @@ import express from 'express';
 import { initDBconnection } from './db';
 import routesAPI from './routes';
 
-const PORT = process.env.PORT || 8080;
+let PORT = process.env.PORT;
+if (PORT == null || PORT == "") {
+  PORT = 8080;
+}
+
 
 const app = express();
 
